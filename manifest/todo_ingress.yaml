@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: todo-ingress
+spec:
+  ingressClassName: azure-application-gateway
+  rules:
+   - host: azureus.online
+     http: 
+      paths: 
+      - backend: 
+          service:
+            name: service-todoapp
+            port: 
+              number: 80
+        path: "/"
+        pathType: Prefix
+   - host: gettask.azureus.online
+     http: 
+      paths: 
+      - backend: 
+          service:
+            name: service-gettask
+            port: 
+              number: 80
+        path: "/"
+        pathType: Prefix
+   - host: addtask.azureus.online
+     http: 
+      paths: 
+      - backend: 
+          service:
+            name: service-addtask
+            port: 
+              number: 80
+        path: "/"
+        pathType: Prefix
+   - host: deletetask.azureus.online
+     http: 
+      paths: 
+      - backend: 
+          service:
+            name: service-deletetask
+            port: 
+              number: 80
+        path: "/"
+        pathType: Prefix

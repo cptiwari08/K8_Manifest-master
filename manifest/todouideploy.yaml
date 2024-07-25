@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: todoapp
+spec:
+  replicas: 1
+  selector: 
+    matchExpressions:
+    - key: app
+      operator: In
+      values: 
+      - todoapp
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template: 
+    metadata:
+      labels:
+        app: todoapp
+    spec:
+      containers:
+      - name: todoapp-con
+        image: azureus3k/todoui_2306
+        ports: 
+        - containerPort: 80
+
